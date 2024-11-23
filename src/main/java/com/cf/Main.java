@@ -94,13 +94,13 @@ public class Main {
     private static void playGame(Scanner scanner, int chances, HashMap<String, Integer> record) {
         Random random = new Random();
         int number = random.nextInt(1, 101);
-        System.out.println("====>The number is " + number);
+//        System.out.println("====>The number is " + number);
         boolean bingo = false;
         int guess;
         int attempts = 0;
         Instant start = Instant.now();
         do {
-            System.out.print("Enter your guess: ");
+            System.out.print("\nEnter your guess: ");
             guess = scanner.nextInt();
             attempts++;
             if (guess == number) {
