@@ -1,7 +1,10 @@
 package com.cf;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
 
 /**
  * Copyright(C) 2024- com.cf
@@ -87,13 +90,18 @@ public class Main {
         boolean binggo = false;
         int guess;
         int attempts = 0;
+        Instant start = Instant.now();
         do {
             System.out.print("Enter your guess: ");
             guess = scanner.nextInt();
             attempts++;
             if (guess == number) {
                 binggo = true;
-                System.out.println("Congratulations! You guessed the correct number in " + attempts + " attempts.");
+                Instant end = Instant.now();
+                Duration costTime = Duration.between(start, end);
+                System.out.println("Congratulations! You guessed the correct number in "
+                        + attempts  + (attempts == 1 ? " attempt" : " attempts")
+                        + ", costs time: " + (costTime.toMillis() / 1000) +"s");
                 break;
             } else if (guess < number) {
                 System.out.println("Incorrect! The number is greater than " + guess + ".");
