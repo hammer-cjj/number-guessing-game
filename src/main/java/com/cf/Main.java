@@ -108,11 +108,38 @@ public class Main {
             } else  {
                 System.out.println("Incorrect! The number is less than " + guess + ".");
             }
+            hint(number, guess, attempts, chances);
         } while (attempts < chances);
 
         if (!binggo) {
             System.out.println("Sorry, you runs out of " + attempts
                     + " changes! The correct number is " + number + ".");
+        }
+    }
+
+    /**
+     * Provides clues to the user at different difficulty levels.
+     *  Easy (chances == 10) and attempts == 5
+     *  Medium (chances == 5) and attempts == 3
+     *  Hard (chances == 3) and attempts == 2
+     * @param number   the correct number
+     * @param guess    user guess
+     * @param attempts the number of attempts so far
+     * @param chances  the number of chances
+     */
+    private static void hint(int number, int guess, int attempts, int chances) {
+        if ((chances == 10 && attempts == 5)
+                || (chances == 5 && attempts == 3)
+                || (chances == 3 && attempts == 2)) {
+            int diff = Math.abs(guess -number);
+            if (diff > 20) {
+                System.out.println("The difference between your guess and the correct number is large.");
+            } else if (diff > 10) {
+                System.out.println("The difference between your guess and the correct number " +
+                        "is greater than 10 but less than or equal to 20.");
+            } else {
+                System.out.println("Your guess is very close.");
+            }
         }
     }
 }
