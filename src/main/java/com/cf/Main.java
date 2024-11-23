@@ -13,6 +13,29 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        while (true) {
+            int chances = getChances(scanner);
+            playGame(scanner, chances);
+            String yesOrNot;
+            do {
+                System.out.print("Are you want to play again? (Y/N): ");
+                yesOrNot = scanner.next();
+            } while (!yesOrNot.equalsIgnoreCase("y")
+                    && !yesOrNot.equalsIgnoreCase("n"));
+            // Quit when the user enter N or n
+            if (yesOrNot.equalsIgnoreCase("n")) {
+                break;
+            }
+
+        }
+    }
+
+    /**
+     * Get chances from user input
+     * @param scanner Scanner
+     * @return The chances of guessing
+     */
+    private static int getChances(Scanner scanner) {
         System.out.println("Welcome to the Number Guessing Game!");
         System.out.println("I'm thinking of a number between 1 and 100.");
         // initial chances
@@ -28,7 +51,7 @@ public class Main {
             System.out.println("3. Hard (3 chances)");
 
             System.out.print("\nEnter your choice: ");
-             level = scanner.nextInt();
+            level = scanner.nextInt();
         } while (level != 1 && level != 2 && level != 3);
 
         String levelName = "";
@@ -49,7 +72,15 @@ public class Main {
 
         System.out.println("\nGreat! You have selected the " + levelName + " difficulty level.");
         System.out.println("Let's start the game!");
+        return chances;
+    }
 
+    /**
+     * Play game with user
+     * @param scanner Scanner
+     * @param chances Guessing chances
+     */
+    private static void playGame(Scanner scanner, int chances) {
         Random random = new Random();
         int number = random.nextInt(1, 101);
         System.out.println("====>The number is " + number);
